@@ -1,0 +1,2 @@
+kak se prawi wruzkata m/y android app i mysql? Samiqt app ne sedi na survura nali? Samoe swyrzan kum nego. Mysql leji na survura -.app -> survur -> data base
+viarno li e: -> mysql -> webpage showing the data -> app
