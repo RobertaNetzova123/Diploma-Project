@@ -5,19 +5,19 @@ unsigned long currentMillis;
 
 Shift_165::Shift_165(int enablePin, int loadPin, int clockPin, int dataPin){
 
-  enable = enablePin;
-  load = loadPin;
-  clock = clockPin;
-  data = dataPin;
+	enable = enablePin;
+	load = loadPin;
+	clock = clockPin;
+	data = dataPin;
 //
-//  pinMode(load,FUNCTION_3);
-//  pinMode(enable,OUTPUT);
-//  pinMode(load,OUTPUT);
-//  pinMode(clock,OUTPUT);
-//  pinMode(data,INPUT);
-//  digitalWrite(load,HIGH);
-//  digitalWrite(enable,HIGH);
-//  digitalWrite(clock,LOW);
+//	pinMode(load,FUNCTION_3);
+//	pinMode(enable,OUTPUT);
+//	pinMode(load,OUTPUT);
+//	pinMode(clock,OUTPUT);
+//	pinMode(data,INPUT);
+//	digitalWrite(load,HIGH);
+//	digitalWrite(enable,HIGH);
+//	digitalWrite(clock,LOW);
 
   pinMode(load,FUNCTION_3);
   pinMode(load,OUTPUT);
@@ -38,8 +38,8 @@ int* Shift_165::Shift_bytes() {
   digitalWrite(enable,LOW);
   byte incoming=shiftIn(data,clock,MSBFIRST);
   digitalWrite(enable,HIGH);
- 
   static int pinValue[8];
+  
   for(int i=7;i>=0;i--){
     
     if(bitRead(incoming,i)==1)
@@ -68,13 +68,7 @@ int* Shift_165::Shift_bytes() {
 //  return false;
 //  }
 
-void Shift_165::ShiftPrint(int* shifted) {
-//  int* s = Shift_bytes();
-      for (int i = 0; i < 8; i ++) {
-      Serial.print(shifted[i]);
-      }
-      Serial.println();
-  }
+
 
 
 

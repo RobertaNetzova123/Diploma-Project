@@ -5,25 +5,46 @@
   Released into the public domain.
 */
 
-#include <ShiftRegister74HC595.h>
+#define data  D7
+#define clock  D5
+#define latch  D6
+
 // create shift register object (number of shift registers, data pin, clock pin, latch pin)
-ShiftRegister74HC595 sr (1, D7,D5,D6); 
-void setup() { 
+//ShiftRegister74HC595 sr (1, D7,D5,D6); 
+void setup() {
+  Serial.begin(9600);
+  pinMode(latch, OUTPUT);
+  digitalWrite(latch, LOW);
+  pinMode(clock, OUTPUT);
+  digitalWrite(clock, LOW);
+  pinMode(data, OUTPUT);
+  digitalWrite(data, LOW);
 }
 
 void loop() {
-  sr.setAllHigh(); // set all pins HIGH
-  delay(500);
-  sr.setAllLow(); // set all pins LOW
-  delay(500); 
-//  for (int i = 0; i < 8; i++) {
-//    sr.set(i, HIGH); // set single pin HIGH
-//    delay(2000); 
-//  }
-//  // set all pins at once
-//  uint8_t pinValues[] = { B10101010 }; 
-//  sr.setAll(pinValues); 
-//  delay(5000);
-//  // read pin (zero based)
-//  uint8_t stateOfPin5 = sr.get(5);
+digitalWrite(data,HIGH);
+  for (int i = 0; i< 7; i++) {
+    doLatch();
+    doClock();
+    }
+  delay(1000);
+
+  digitalWrite(data,LOW);
+  for (int i = 0; i< 7; i++) {
+    doLatch();
+    }
+    doClock();
+    delay(1000);
+
+//doClock();
+}
+
+void doLatch () {
+  digitalWrite(latch,HIGH);
+  digitalWrite(latch,LOW);
+}
+
+void doClock() {
+ digitalWrite(clock,HIGH);
+ digitalWrite(clock,LOW); 
 }

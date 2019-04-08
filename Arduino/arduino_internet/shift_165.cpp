@@ -9,16 +9,7 @@ Shift_165::Shift_165(int enablePin, int loadPin, int clockPin, int dataPin){
   load = loadPin;
   clock = clockPin;
   data = dataPin;
-//
-//  pinMode(load,FUNCTION_3);
-//  pinMode(enable,OUTPUT);
-//  pinMode(load,OUTPUT);
-//  pinMode(clock,OUTPUT);
-//  pinMode(data,INPUT);
-//  digitalWrite(load,HIGH);
-//  digitalWrite(enable,HIGH);
-//  digitalWrite(clock,LOW);
-
+  
   pinMode(load,FUNCTION_3);
   pinMode(load,OUTPUT);
   pinMode(enable,OUTPUT);

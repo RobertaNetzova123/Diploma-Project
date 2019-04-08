@@ -1,16 +1,4 @@
-/*
- * Pill Dispencer project Arduino Side
- * Developed by:          Roberta Netzova
- * Last updated on:       19.04.09
- * Current version:       01.5
- * Working functionality: Base rotation; VP finding container; 
- *                        VP catching pill - With pressure class; 
- *                        main working flow; 
- *                        Check if pill has fallen in the way (pressure sensor validation)
- * ..................TODO:.......................
- * Check if pill has fallen in the index container (Shift register validation)
- * Connect with Internet (in adrduino_internet code);
-*/
+
 #include "motorDriver.h"
 #include "pressureSensor.h"
 #include "shift_165.h"
