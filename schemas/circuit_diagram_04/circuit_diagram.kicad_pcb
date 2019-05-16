@@ -2,7 +2,7 @@
 
   (general
     (thickness 1.6)
-    (drawings 0)
+    (drawings 6)
     (tracks 706)
     (zones 0)
     (modules 71)
@@ -34,7 +34,7 @@
   )
 
   (setup
-    (last_trace_width 0.4)
+    (last_trace_width 0.25)
     (user_trace_width 0.4)
     (user_trace_width 0.5)
     (user_trace_width 0.6)
@@ -3913,6 +3913,15 @@
       (rotate (xyz 0 0 0))
     )
   )
+
+  (gr_text "Dispenser PCB \nRoberta Netzova 12B" (at 177.8 127 90) (layer F.Cu)
+    (effects (font (size 1.5 1.5) (thickness 0.3)))
+  )
+  (gr_line (start 40.64 68.58) (end 185.42 68.58) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 40.64 139.7) (end 40.64 68.58) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 48.26 152.4) (end 40.64 139.7) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 185.42 152.4) (end 48.26 152.4) (layer Edge.Cuts) (width 0.15))
+  (gr_line (start 185.42 68.58) (end 185.42 152.4) (layer Edge.Cuts) (width 0.15))
 
   (segment (start 68.58 117.2718) (end 68.58 118.11) (width 0.4) (layer F.Cu) (net 0) (status 30))
   (segment (start 106.81338 86.664) (end 101.73338 91.744) (width 0.4) (layer F.Cu) (net 0) (status 20))
