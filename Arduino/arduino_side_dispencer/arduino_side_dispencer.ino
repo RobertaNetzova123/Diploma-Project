@@ -28,7 +28,7 @@ const int pin  = A0;
 #define clock  D8
 #define data   D0
 
-const int neededContainer = 7;
+const int neededContainer = 1;
 
 
 Motor base = Motor(IN1,IN2, PWMA);
@@ -41,6 +41,7 @@ void setup() {
   Serial.begin(9600);
   // Filling the register with states from the optrones;
   shift_register.Shift_bytes();
+  delay(500);
  
 }
 
@@ -69,33 +70,49 @@ void loop() {
 void pickPill () {
 //  Serial.println("BASE");
 //  delay(2000);
-//  base.drive(800,2000);
+//  base.drive(800,1000);
 //  delay(2000);
-//  
+////  
 //  Serial.println("Horizontal R");
 //  delay(2000);
-//  movePen(1024,neededContainer,h);
+//  movePen(1024,neededContainer-1,h);
 //  delay(2000);
 //
   Serial.println("PUMP");
   pump.drive(1000);
-//  delay(1000);
-  
+  delay(1000);
+//  
   Serial.println("DOWN");
-//  delay(1000);
-  movePenDown(1024,v);
-   delay(1000);
+  delay(1000);
+  movePenDown(-800,v);
+  delay(1000);
 
-delay(3000);
+  Serial.println("UP");
+  delay(1000);
+  movePenDown(800,v);
+  delay(1000);
+
+//NOT REAL;
+//  Serial.println("DOWN");
+//  delay(2000);
+//  movePen(800,neededContainer-1,v);
+//  delay(2000);
 //  Serial.println("UP");
 //  delay(2000);
-//  movePen(-1024,neededContainer,v);
+//  movePen(800,neededContainer-1,v);
 //  delay(2000);
 //  
+
 //  Serial.println("Horizontal L");
 //  delay(2000);
-//  movePen(-1024,neededContainer,h);
+//  movePen(-1024,neededContainer - 1,h);
 //  delay(2000);
+
+//  if(!shift_register.ShiftChecker(3000,neededContainer - 1))
+//  Serial.println("No PILL");
+//  else Serial.println ("PILL");
+
+  pump.brake();
   }
 
   
@@ -121,6 +138,7 @@ void movePenDown(int speed, Motor motor) {
     yield();
     }
     motor.brake();
-    pump.brake();
+//    pump.brake();
   }
+
 
