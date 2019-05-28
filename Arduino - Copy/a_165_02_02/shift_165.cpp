@@ -3,12 +3,13 @@
 unsigned long startMillis;
 unsigned long currentMillis;
 
-Shift_165::Shift_165(int enablePin, int loadPin, int clockPin, int dataPin){
+Shift_165::Shift_165(int enablePin, int loadPin, int clockPin, int dataPin, int register_number){
 
 	enable = enablePin;
 	load = loadPin;
 	clock = clockPin;
 	data = dataPin;
+  number_of_bits = register_number*8;
 
   pinMode(load,FUNCTION_3);
   pinMode(load,OUTPUT);
@@ -19,10 +20,6 @@ Shift_165::Shift_165(int enablePin, int loadPin, int clockPin, int dataPin){
 }
 
 void Shift_165::Shift_bytes(int* arr) {
-
-//  for (int i =0; i < 16; i++) {
-//    arr[i] = 1;
-//    }
  
   digitalWrite(load,LOW);
   delay(10);
@@ -31,13 +28,15 @@ void Shift_165::Shift_bytes(int* arr) {
   
   digitalWrite(clock,HIGH);
   digitalWrite(enable,LOW);
-  byte incoming[2];
-  for (int i = 0; i < 2; i ++) {
+  
+  byte incoming[number_of_bits];
+  
+  for (int i = 0; i < number_of_bits; i ++) {
     incoming[i] = shiftIn(data,clock,MSBFIRST);
     }
   
   digitalWrite(enable,HIGH);
-  int q = 15;
+  int q = number_of_bits - 1;
   for (int i  = 1; i >= 0; i--) {
 
     for (int k = 7; k >= 0; k--,q--) { 
@@ -52,7 +51,12 @@ void Shift_165::Shift_bytes(int* arr) {
       }
     }
   }
-  
+
+
+int Shift_165::get_register_size() {
+    
+    return number_of_bits;
+    }
 
 //bool Shift_165::ShiftChecker (int duration, int checker) {
 //  startMillis = millis();

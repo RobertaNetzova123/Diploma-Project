@@ -10,13 +10,13 @@ float Sensor::readPressure(int pin){
     int pressureValue = analogRead(pin);
 //    float pressure=((pressureValue/1024.0)+0.095)/0.000009;
       float pressure = pressureValue;
+//     Serial.println(pressure);
     return pressure;
 }
 
 bool Sensor::PressureCheck(){
   //preventing unstable results
-  Serial.println(normal_state);
-  delay(500);
+//  delay(500);
   float pressure = readPressure(pin);
   if(pressure != normal_state){
     Serial.println(pressure);
@@ -26,4 +26,5 @@ bool Sensor::PressureCheck(){
   }
 void Sensor::SetState() {
   normal_state = readPressure(pin);
+  Serial.println(normal_state);
   }

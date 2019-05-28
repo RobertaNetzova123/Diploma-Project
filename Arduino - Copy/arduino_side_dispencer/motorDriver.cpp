@@ -45,6 +45,10 @@ void Motor::drive(int speed, int duration)
   drive(speed);
   delay(duration);
   brake();
+  Serial.print("Motor drove ");
+  Serial.print(duration);
+  Serial.println(" seconds");
+  delay(1000);
 }
 
 void Motor::fwd(int speed)
