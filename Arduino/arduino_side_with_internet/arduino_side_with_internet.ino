@@ -12,7 +12,12 @@
  * Connect with Internet (in adrduino_internet code);
 */
 
+#include <ESP8266WiFi.h>
+#include <DNSServer.h>
+#include <ESP8266WebServer.h>
+#include <WiFiManager.h> 
 
+#include "mqtt.h"
 #include "motorDriver.h"
 #include "pressureSensor.h"
 #include "shift_165.h"
@@ -31,7 +36,18 @@ const int pin  = A0;
 #define data   D0
 
 #define register_number 2
-const int neededContainer = 5;
+
+int neededContainer =  0;
+const int local_id            = 1;
+const String mqtt_id          = "Dispenser:" + String(local_id);
+const int mqtt_port           = 1883;
+const char* mqtt_server       = "rety.dynu.net";
+
+const String in_topic    = "server-dispenser";
+const String out_topic   = "outTopic";
+
+WiFiServer server(81);
+Mosquitto mosquitto = Mosquitto(mqtt_server, mqtt_port, mqtt_id, in_topic, out_topic);
 
 Motor base = Motor(IN1,IN2, PWMA);
 //Motor pump = Motor(IN1, IN2, PWMB);
@@ -44,10 +60,17 @@ int size = shift_register.get_register_size();
 
 void setup() {
   Serial.begin(9600);
+
+  WiFiManager wifiManager;
+  wifiManager.autoConnect("AutoConnectAP");
+  Serial.println("Connected.");
+
+  Serial.println("Connecting mosquitto broker");
+  mosquitto.mqtt_setup();
+  mosquitto.setCallback(mqttCallback);
   
   pinMode(pump, OUTPUT);
   digitalWrite(pump,LOW);
-  
   delay(500);
    sensor.SetState();
     int shifted[size];
@@ -55,35 +78,78 @@ void setup() {
 
 }
 
-void loop() {
-  for (int i = 2; i < 4; i++) {
-  sensor.SetState();
-  delay(1000);
-  while (!sensor.PressureCheck()) {
-    pickPill(i);
-    yield();
-    }
-    
-   delay (500);
-   movePen(-600,9,v);
-   digitalWrite(pump,LOW);
+void loop(){
+  
+   if(! mosquitto.read()) Serial.println("Failed to read !!!");
    
-   while (1) {
-     if (shift_register.ShiftChecker(5000,8)) {
-      Serial.println ("SUCCESS");
-     break;
-     }
-     Serial.println ("FAIL");
-     movePen(600,7,v);
-     yield();
-    
-    }
-    delay(2000);
-    movePen(600,7,v);
-     delay(2000);
   }
- 
+
+
+void mqttCallback(char* topic, byte* payload, unsigned int length)
+{
+//  Serial.print("Message arrived [");
+//  Serial.print(topic);
+//  Serial.print("] ");
+//  Serial.println(".....");
+
+  String msg;
+  for (int i = 0; i < length; i++)
+  {
+//    Serial.print((char) payload[i]);
+    msg += (char) payload[i];
+  }
+
+//  Serial.println();
+
+  String tmp = msg.substring(5);
+  if(tmp.indexOf(":") <= 0)
+    {
+      mosquitto.publish("error");
+      return;
+    }
+  
+  int container = (tmp.substring(0, tmp.indexOf(":"))).toInt();
+  int count = (tmp.substring(tmp.indexOf(":") + 1)).toInt();
+  if (count > 0) {
+    Serial.print("Message arrived [");
+    Serial.print(topic);
+    Serial.print("] ");
+    Serial.println(".....");
+    Serial.print("container ");
+    Serial.println(container);
+    Serial.print("count ");
+    Serial.println(count);
+    }
+    
+  neededContainer = container;
+  for (int i = 0; i < count; i++) {
+    sensor.SetState();
+    delay(1000);
+    while (!sensor.PressureCheck()) {
+      pickPill(neededContainer);
+      yield();
+      }
+
+     delay (500);
+     movePen(-600,9,v);
+     digitalWrite(pump,LOW);
+   
+     while (1) {
+       if (shift_register.ShiftChecker(5000,8)) {
+        Serial.println ("SUCCESS");
+       break;
+       }
+       Serial.println ("FAIL");
+       movePen(600,7,v);
+       yield();
+      }
+      
+      delay(2000);
+      movePen(600,7,v);
+      delay(2000);
+  }
 }
+
 /*
  *................functions.................. 
  */
