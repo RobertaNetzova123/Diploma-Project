@@ -15,7 +15,6 @@ float Sensor::readPressure(int pin){
 
 bool Sensor::PressureCheck(){
   //preventing unstable results
-  Serial.println(normal_state);
   delay(500);
   float pressure = readPressure(pin);
   if(pressure != normal_state){

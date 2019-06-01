@@ -54,19 +54,19 @@ int* Shift_165::Shift_bytes() {
   return pinValue; 
 }
 
-bool Shift_165::ShiftChecker (int duration, int checker) {
-  startMillis = millis();
-  currentMillis = millis();
-  while (currentMillis - startMillis < duration) {
-    int* shifted = Shift_bytes();
-    if (shifted[checker] == 0) {
-      return true;
-    }
-    currentMillis = millis();
-    }
-  
-  return false;
-  }
+//bool Shift_165::ShiftChecker (int duration, int checker) {
+//  startMillis = millis();
+//  currentMillis = millis();
+//  while (currentMillis - startMillis < duration) {
+//    int* shifted = Shift_bytes();
+//    if (shifted[checker] == 0) {
+//      return true;
+//    }
+//    currentMillis = millis();
+//    }
+//  
+//  return false;
+//  }
 
 void Shift_165::ShiftPrint(int* shifted) {
 //  int* s = Shift_bytes();
