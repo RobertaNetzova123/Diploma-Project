@@ -1,45 +1,319 @@
 0 info it worked if it ends with ok
-1 verbose cli [ '/usr/bin/node', '/usr/bin/npm', 'start' ]
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '--global',
+1 verbose cli   'kill-port' ]
 2 info using npm@3.5.2
 3 info using node@v6.11.4
-4 verbose run-script [ 'prestart', 'start', 'poststart' ]
-5 info lifecycle nodeapp1@0.0.0~prestart: nodeapp1@0.0.0
-6 silly lifecycle nodeapp1@0.0.0~prestart: no script for prestart, continuing
-7 info lifecycle nodeapp1@0.0.0~start: nodeapp1@0.0.0
-8 verbose lifecycle nodeapp1@0.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle nodeapp1@0.0.0~start: PATH: /usr/share/npm/bin/node-gyp-bin:/var/www/html/nodeApp1/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-10 verbose lifecycle nodeapp1@0.0.0~start: CWD: /var/www/html/nodeApp1
-11 silly lifecycle nodeapp1@0.0.0~start: Args: [ '-c', 'node ./bin/www' ]
-12 silly lifecycle nodeapp1@0.0.0~start: Returned: code: 1  signal: null
-13 info lifecycle nodeapp1@0.0.0~start: Failed to exec start script
-14 verbose stack Error: nodeapp1@0.0.0 start: `node ./bin/www`
-14 verbose stack Exit status 1
-14 verbose stack     at EventEmitter.<anonymous> (/usr/share/npm/lib/utils/lifecycle.js:232:16)
-14 verbose stack     at emitTwo (events.js:106:13)
-14 verbose stack     at EventEmitter.emit (events.js:191:7)
-14 verbose stack     at ChildProcess.<anonymous> (/usr/share/npm/lib/utils/spawn.js:24:14)
-14 verbose stack     at emitTwo (events.js:106:13)
-14 verbose stack     at ChildProcess.emit (events.js:191:7)
-14 verbose stack     at maybeClose (internal/child_process.js:920:16)
-14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:230:5)
-15 verbose pkgid nodeapp1@0.0.0
-16 verbose cwd /var/www/html/nodeApp1
-17 error Linux 4.13.0-39-generic
-18 error argv "/usr/bin/node" "/usr/bin/npm" "start"
-19 error node v6.11.4
-20 error npm  v3.5.2
-21 error code ELIFECYCLE
-22 error nodeapp1@0.0.0 start: `node ./bin/www`
-22 error Exit status 1
-23 error Failed at the nodeapp1@0.0.0 start script 'node ./bin/www'.
-23 error Make sure you have the latest version of node.js and npm installed.
-23 error If you do, this is most likely a problem with the nodeapp1 package,
-23 error not with npm itself.
-23 error Tell the author that this fails on your system:
-23 error     node ./bin/www
-23 error You can get information on how to open an issue for this project with:
-23 error     npm bugs nodeapp1
-23 error Or if that isn't available, you can get their info via:
-23 error     npm owner ls nodeapp1
-23 error There is likely additional logging output above.
-24 verbose exit [ 1, true ]
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readGlobalPackageData
+7 silly fetchPackageMetaData kill-port
+8 silly fetchNamedPackageData kill-port
+9 silly mapToRegistry name kill-port
+10 silly mapToRegistry using default registry
+11 silly mapToRegistry registry https://registry.npmjs.org/
+12 silly mapToRegistry uri https://registry.npmjs.org/kill-port
+13 verbose request uri https://registry.npmjs.org/kill-port
+14 verbose request no auth needed
+15 info attempt registry request try #1 at 7:59:00 AM
+16 verbose request id de6c61f3bc89fef6
+17 http request GET https://registry.npmjs.org/kill-port
+18 http 200 https://registry.npmjs.org/kill-port
+19 verbose headers { date: 'Thu, 30 May 2019 12:59:00 GMT',
+19 verbose headers   'content-type': 'application/json',
+19 verbose headers   'transfer-encoding': 'chunked',
+19 verbose headers   connection: 'keep-alive',
+19 verbose headers   'set-cookie': [ '__cfduid=d70b3a0e65dfd56cbf53b961aa49016041559221140; expires=Fri, 29-May-20 12:59:00 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+19 verbose headers   'cf-cache-status': 'HIT',
+19 verbose headers   'cache-control': 'max-age=300',
+19 verbose headers   'cf-ray': '4df0e202c9ffd254-SOF',
+19 verbose headers   etag: 'W/"990338c9777385738d69d4323bfc550d"',
+19 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+19 verbose headers   'last-modified': 'Fri, 10 May 2019 18:48:26 GMT',
+19 verbose headers   vary: 'accept-encoding, accept',
+19 verbose headers   'x-amz-meta-rev': '8-666077992b618e788e04e7caca3ff8a1',
+19 verbose headers   server: 'cloudflare',
+19 verbose headers   'content-encoding': 'gzip' }
+20 silly get cb [ 200,
+20 silly get   { date: 'Thu, 30 May 2019 12:59:00 GMT',
+20 silly get     'content-type': 'application/json',
+20 silly get     'transfer-encoding': 'chunked',
+20 silly get     connection: 'keep-alive',
+20 silly get     'set-cookie': [ '__cfduid=d70b3a0e65dfd56cbf53b961aa49016041559221140; expires=Fri, 29-May-20 12:59:00 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+20 silly get     'cf-cache-status': 'HIT',
+20 silly get     'cache-control': 'max-age=300',
+20 silly get     'cf-ray': '4df0e202c9ffd254-SOF',
+20 silly get     etag: 'W/"990338c9777385738d69d4323bfc550d"',
+20 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+20 silly get     'last-modified': 'Fri, 10 May 2019 18:48:26 GMT',
+20 silly get     vary: 'accept-encoding, accept',
+20 silly get     'x-amz-meta-rev': '8-666077992b618e788e04e7caca3ff8a1',
+20 silly get     server: 'cloudflare',
+20 silly get     'content-encoding': 'gzip' } ]
+21 verbose get saving kill-port to /home/rety/.npm/registry.npmjs.org/kill-port/.cache.json
+22 silly install normalizeTree
+23 silly loadCurrentTree Finishing
+24 silly loadIdealTree Starting
+25 silly install loadIdealTree
+26 silly cloneCurrentTree Starting
+27 silly install cloneCurrentTreeToIdealTree
+28 silly cloneCurrentTree Finishing
+29 silly loadShrinkwrap Starting
+30 silly install loadShrinkwrap
+31 silly loadShrinkwrap Finishing
+32 silly loadAllDepsIntoIdealTree Starting
+33 silly install loadAllDepsIntoIdealTree
+34 silly resolveWithNewModule kill-port@1.5.0 checking installable status
+35 silly cache add args [ 'kill-port', null ]
+36 verbose cache add spec kill-port
+37 silly cache add parsed spec Result {
+37 silly cache add   raw: 'kill-port',
+37 silly cache add   scope: null,
+37 silly cache add   name: 'kill-port',
+37 silly cache add   rawSpec: '',
+37 silly cache add   spec: 'latest',
+37 silly cache add   type: 'tag' }
+38 silly addNamed kill-port@latest
+39 verbose addNamed "latest" is being treated as a dist-tag for kill-port
+40 info addNameTag [ 'kill-port', 'latest' ]
+41 silly mapToRegistry name kill-port
+42 silly mapToRegistry using default registry
+43 silly mapToRegistry registry https://registry.npmjs.org/
+44 silly mapToRegistry uri https://registry.npmjs.org/kill-port
+45 verbose addNameTag registry:https://registry.npmjs.org/kill-port not in flight; fetching
+46 verbose get https://registry.npmjs.org/kill-port not expired, no request
+47 silly addNameTag next cb for kill-port with tag latest
+48 silly addNamed kill-port@1.5.0
+49 verbose addNamed "1.5.0" is a plain semver version for kill-port
+50 silly mapToRegistry name kill-port
+51 silly mapToRegistry using default registry
+52 silly mapToRegistry registry https://registry.npmjs.org/
+53 silly mapToRegistry uri https://registry.npmjs.org/kill-port
+54 verbose addRemoteTarball https://registry.npmjs.org/kill-port/-/kill-port-1.5.0.tgz not in flight; adding
+55 verbose addRemoteTarball [ 'https://registry.npmjs.org/kill-port/-/kill-port-1.5.0.tgz',
+55 verbose addRemoteTarball   '46574bd10a3c316a47915c84c9386321e66f3f95' ]
+56 info retry fetch attempt 1 at 7:59:01 AM
+57 info attempt registry request try #1 at 7:59:01 AM
+58 http fetch GET https://registry.npmjs.org/kill-port/-/kill-port-1.5.0.tgz
+59 http fetch 200 https://registry.npmjs.org/kill-port/-/kill-port-1.5.0.tgz
+60 silly fetchAndShaCheck shasum 46574bd10a3c316a47915c84c9386321e66f3f95
+61 verbose addTmpTarball /tmp/npm-23334-90e61f77/registry.npmjs.org/kill-port/-/kill-port-1.5.0.tgz not in flight; adding
+62 verbose addTmpTarball already have metadata; skipping unpack for kill-port@1.5.0
+63 silly cache afterAdd kill-port@1.5.0
+64 verbose afterAdd /home/rety/.npm/kill-port/1.5.0/package/package.json not in flight; writing
+65 verbose afterAdd /home/rety/.npm/kill-port/1.5.0/package/package.json written
+66 silly fetchNamedPackageData get-them-args
+67 silly mapToRegistry name get-them-args
+68 silly mapToRegistry using default registry
+69 silly mapToRegistry registry https://registry.npmjs.org/
+70 silly mapToRegistry uri https://registry.npmjs.org/get-them-args
+71 silly fetchNamedPackageData shell-exec
+72 silly mapToRegistry name shell-exec
+73 silly mapToRegistry using default registry
+74 silly mapToRegistry registry https://registry.npmjs.org/
+75 silly mapToRegistry uri https://registry.npmjs.org/shell-exec
+76 verbose request uri https://registry.npmjs.org/get-them-args
+77 verbose request no auth needed
+78 info attempt registry request try #1 at 7:59:01 AM
+79 http request GET https://registry.npmjs.org/get-them-args
+80 verbose request uri https://registry.npmjs.org/shell-exec
+81 verbose request no auth needed
+82 info attempt registry request try #1 at 7:59:01 AM
+83 http request GET https://registry.npmjs.org/shell-exec
+84 http 200 https://registry.npmjs.org/shell-exec
+85 verbose headers { date: 'Thu, 30 May 2019 12:59:01 GMT',
+85 verbose headers   'content-type': 'application/json',
+85 verbose headers   'transfer-encoding': 'chunked',
+85 verbose headers   connection: 'keep-alive',
+85 verbose headers   'set-cookie': [ '__cfduid=dd5f106a9bbd32e09063c40c1834af44c1559221141; expires=Fri, 29-May-20 12:59:01 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+85 verbose headers   'cf-cache-status': 'HIT',
+85 verbose headers   'cache-control': 'max-age=300',
+85 verbose headers   'cf-ray': '4df0e2064b25d250-SOF',
+85 verbose headers   etag: 'W/"3fc583268951ffe8582a7d03eb419fea"',
+85 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+85 verbose headers   'last-modified': 'Tue, 11 Sep 2018 05:43:24 GMT',
+85 verbose headers   vary: 'accept-encoding, accept',
+85 verbose headers   'x-amz-meta-rev': '3-0ce3bcba1174caa69a95f6c95a428372',
+85 verbose headers   server: 'cloudflare',
+85 verbose headers   'content-encoding': 'gzip' }
+86 silly get cb [ 200,
+86 silly get   { date: 'Thu, 30 May 2019 12:59:01 GMT',
+86 silly get     'content-type': 'application/json',
+86 silly get     'transfer-encoding': 'chunked',
+86 silly get     connection: 'keep-alive',
+86 silly get     'set-cookie': [ '__cfduid=dd5f106a9bbd32e09063c40c1834af44c1559221141; expires=Fri, 29-May-20 12:59:01 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+86 silly get     'cf-cache-status': 'HIT',
+86 silly get     'cache-control': 'max-age=300',
+86 silly get     'cf-ray': '4df0e2064b25d250-SOF',
+86 silly get     etag: 'W/"3fc583268951ffe8582a7d03eb419fea"',
+86 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+86 silly get     'last-modified': 'Tue, 11 Sep 2018 05:43:24 GMT',
+86 silly get     vary: 'accept-encoding, accept',
+86 silly get     'x-amz-meta-rev': '3-0ce3bcba1174caa69a95f6c95a428372',
+86 silly get     server: 'cloudflare',
+86 silly get     'content-encoding': 'gzip' } ]
+87 verbose get saving shell-exec to /home/rety/.npm/registry.npmjs.org/shell-exec/.cache.json
+88 silly resolveWithNewModule shell-exec@1.0.2 checking installable status
+89 silly cache add args [ 'shell-exec@^1.0.2', null ]
+90 verbose cache add spec shell-exec@^1.0.2
+91 silly cache add parsed spec Result {
+91 silly cache add   raw: 'shell-exec@^1.0.2',
+91 silly cache add   scope: null,
+91 silly cache add   name: 'shell-exec',
+91 silly cache add   rawSpec: '^1.0.2',
+91 silly cache add   spec: '>=1.0.2 <2.0.0',
+91 silly cache add   type: 'range' }
+92 silly addNamed shell-exec@>=1.0.2 <2.0.0
+93 verbose addNamed ">=1.0.2 <2.0.0" is a valid semver range for shell-exec
+94 silly addNameRange { name: 'shell-exec', range: '>=1.0.2 <2.0.0', hasData: false }
+95 silly mapToRegistry name shell-exec
+96 silly mapToRegistry using default registry
+97 silly mapToRegistry registry https://registry.npmjs.org/
+98 silly mapToRegistry uri https://registry.npmjs.org/shell-exec
+99 verbose addNameRange registry:https://registry.npmjs.org/shell-exec not in flight; fetching
+100 verbose get https://registry.npmjs.org/shell-exec not expired, no request
+101 silly addNameRange number 2 { name: 'shell-exec', range: '>=1.0.2 <2.0.0', hasData: true }
+102 silly addNameRange versions [ 'shell-exec', [ '1.0.0', '1.0.1', '1.0.2' ] ]
+103 silly addNamed shell-exec@1.0.2
+104 verbose addNamed "1.0.2" is a plain semver version for shell-exec
+105 silly mapToRegistry name shell-exec
+106 silly mapToRegistry using default registry
+107 silly mapToRegistry registry https://registry.npmjs.org/
+108 silly mapToRegistry uri https://registry.npmjs.org/shell-exec
+109 verbose addRemoteTarball https://registry.npmjs.org/shell-exec/-/shell-exec-1.0.2.tgz not in flight; adding
+110 verbose addRemoteTarball [ 'https://registry.npmjs.org/shell-exec/-/shell-exec-1.0.2.tgz',
+110 verbose addRemoteTarball   '2e9361b0fde1d73f476c4b6671fa17785f696756' ]
+111 info retry fetch attempt 1 at 7:59:01 AM
+112 info attempt registry request try #1 at 7:59:01 AM
+113 http fetch GET https://registry.npmjs.org/shell-exec/-/shell-exec-1.0.2.tgz
+114 http fetch 200 https://registry.npmjs.org/shell-exec/-/shell-exec-1.0.2.tgz
+115 silly fetchAndShaCheck shasum 2e9361b0fde1d73f476c4b6671fa17785f696756
+116 verbose addTmpTarball /tmp/npm-23334-90e61f77/registry.npmjs.org/shell-exec/-/shell-exec-1.0.2.tgz not in flight; adding
+117 verbose addTmpTarball already have metadata; skipping unpack for shell-exec@1.0.2
+118 silly cache afterAdd shell-exec@1.0.2
+119 verbose afterAdd /home/rety/.npm/shell-exec/1.0.2/package/package.json not in flight; writing
+120 verbose afterAdd /home/rety/.npm/shell-exec/1.0.2/package/package.json written
+121 http 200 https://registry.npmjs.org/get-them-args
+122 verbose headers { date: 'Thu, 30 May 2019 12:59:02 GMT',
+122 verbose headers   'content-type': 'application/json; charset=UTF-8',
+122 verbose headers   'transfer-encoding': 'chunked',
+122 verbose headers   connection: 'keep-alive',
+122 verbose headers   'set-cookie': [ '__cfduid=d05bd2ee84495eea365431bd6169060f81559221141; expires=Fri, 29-May-20 12:59:01 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+122 verbose headers   'cf-cache-status': 'REVALIDATED',
+122 verbose headers   'cache-control': 'max-age=300',
+122 verbose headers   'cf-ray': '4df0e2062d33d254-SOF',
+122 verbose headers   etag: 'W/"c7c4949f1097dff3c00dfb2681d86cad"',
+122 verbose headers   'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+122 verbose headers   'last-modified': 'Sun, 15 Jul 2018 13:35:24 GMT',
+122 verbose headers   vary: 'accept-encoding, accept',
+122 verbose headers   server: 'cloudflare',
+122 verbose headers   'content-encoding': 'gzip' }
+123 silly get cb [ 200,
+123 silly get   { date: 'Thu, 30 May 2019 12:59:02 GMT',
+123 silly get     'content-type': 'application/json; charset=UTF-8',
+123 silly get     'transfer-encoding': 'chunked',
+123 silly get     connection: 'keep-alive',
+123 silly get     'set-cookie': [ '__cfduid=d05bd2ee84495eea365431bd6169060f81559221141; expires=Fri, 29-May-20 12:59:01 GMT; path=/; domain=.registry.npmjs.org; HttpOnly' ],
+123 silly get     'cf-cache-status': 'REVALIDATED',
+123 silly get     'cache-control': 'max-age=300',
+123 silly get     'cf-ray': '4df0e2062d33d254-SOF',
+123 silly get     etag: 'W/"c7c4949f1097dff3c00dfb2681d86cad"',
+123 silly get     'expect-ct': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"',
+123 silly get     'last-modified': 'Sun, 15 Jul 2018 13:35:24 GMT',
+123 silly get     vary: 'accept-encoding, accept',
+123 silly get     server: 'cloudflare',
+123 silly get     'content-encoding': 'gzip' } ]
+124 verbose get saving get-them-args to /home/rety/.npm/registry.npmjs.org/get-them-args/.cache.json
+125 silly resolveWithNewModule get-them-args@1.3.2 checking installable status
+126 silly cache add args [ 'get-them-args@^1.3.1', null ]
+127 verbose cache add spec get-them-args@^1.3.1
+128 silly cache add parsed spec Result {
+128 silly cache add   raw: 'get-them-args@^1.3.1',
+128 silly cache add   scope: null,
+128 silly cache add   name: 'get-them-args',
+128 silly cache add   rawSpec: '^1.3.1',
+128 silly cache add   spec: '>=1.3.1 <2.0.0',
+128 silly cache add   type: 'range' }
+129 silly addNamed get-them-args@>=1.3.1 <2.0.0
+130 verbose addNamed ">=1.3.1 <2.0.0" is a valid semver range for get-them-args
+131 silly addNameRange { name: 'get-them-args',
+131 silly addNameRange   range: '>=1.3.1 <2.0.0',
+131 silly addNameRange   hasData: false }
+132 silly mapToRegistry name get-them-args
+133 silly mapToRegistry using default registry
+134 silly mapToRegistry registry https://registry.npmjs.org/
+135 silly mapToRegistry uri https://registry.npmjs.org/get-them-args
+136 verbose addNameRange registry:https://registry.npmjs.org/get-them-args not in flight; fetching
+137 verbose get https://registry.npmjs.org/get-them-args not expired, no request
+138 silly addNameRange number 2 { name: 'get-them-args', range: '>=1.3.1 <2.0.0', hasData: true }
+139 silly addNameRange versions [ 'get-them-args',
+139 silly addNameRange   [ '1.0.0',
+139 silly addNameRange     '1.0.1',
+139 silly addNameRange     '1.1.1',
+139 silly addNameRange     '1.2.0',
+139 silly addNameRange     '1.2.1',
+139 silly addNameRange     '1.2.2',
+139 silly addNameRange     '1.3.0',
+139 silly addNameRange     '1.3.1',
+139 silly addNameRange     '1.3.2' ] ]
+140 silly addNamed get-them-args@1.3.2
+141 verbose addNamed "1.3.2" is a plain semver version for get-them-args
+142 silly mapToRegistry name get-them-args
+143 silly mapToRegistry using default registry
+144 silly mapToRegistry registry https://registry.npmjs.org/
+145 silly mapToRegistry uri https://registry.npmjs.org/get-them-args
+146 verbose addRemoteTarball https://registry.npmjs.org/get-them-args/-/get-them-args-1.3.2.tgz not in flight; adding
+147 verbose addRemoteTarball [ 'https://registry.npmjs.org/get-them-args/-/get-them-args-1.3.2.tgz',
+147 verbose addRemoteTarball   '74a20ba8a4abece5ae199ad03f2bcc68fdfc9ba5' ]
+148 info retry fetch attempt 1 at 7:59:02 AM
+149 info attempt registry request try #1 at 7:59:02 AM
+150 http fetch GET https://registry.npmjs.org/get-them-args/-/get-them-args-1.3.2.tgz
+151 http fetch 200 https://registry.npmjs.org/get-them-args/-/get-them-args-1.3.2.tgz
+152 silly fetchAndShaCheck shasum 74a20ba8a4abece5ae199ad03f2bcc68fdfc9ba5
+153 verbose addTmpTarball /tmp/npm-23334-90e61f77/registry.npmjs.org/get-them-args/-/get-them-args-1.3.2.tgz not in flight; adding
+154 verbose addTmpTarball already have metadata; skipping unpack for get-them-args@1.3.2
+155 silly cache afterAdd get-them-args@1.3.2
+156 verbose afterAdd /home/rety/.npm/get-them-args/1.3.2/package/package.json not in flight; writing
+157 verbose afterAdd /home/rety/.npm/get-them-args/1.3.2/package/package.json written
+158 silly loadAllDepsIntoIdealTree Finishing
+159 silly idealTree:prePrune lib
+159 silly idealTree:prePrune └─┬ kill-port@1.5.0
+159 silly idealTree:prePrune   ├── get-them-args@1.3.2
+159 silly idealTree:prePrune   └── shell-exec@1.0.2
+160 silly loadIdealTree Finishing
+161 silly currentTree lib
+162 silly idealTree lib
+162 silly idealTree └─┬ kill-port@1.5.0
+162 silly idealTree   ├── get-them-args@1.3.2
+162 silly idealTree   └── shell-exec@1.0.2
+163 silly generateActionsToTake Starting
+164 silly install generateActionsToTake
+165 warn checkPermissions Missing write access to /usr/local/lib
+166 silly rollbackFailedOptional Starting
+167 silly rollbackFailedOptional Finishing
+168 silly runTopLevelLifecycles Starting
+169 silly runTopLevelLifecycles Finishing
+170 silly install printInstalled
+171 verbose stack Error: EACCES: permission denied, access '/usr/local/lib'
+171 verbose stack     at Error (native)
+172 verbose cwd /var/www/html/Dispenser/dispenserInterface
+173 error Linux 4.13.0-39-generic
+174 error argv "/usr/bin/node" "/usr/bin/npm" "install" "--global" "kill-port"
+175 error node v6.11.4
+176 error npm  v3.5.2
+177 error path /usr/local/lib
+178 error code EACCES
+179 error errno -13
+180 error syscall access
+181 error Error: EACCES: permission denied, access '/usr/local/lib'
+181 error     at Error (native)
+181 error  { Error: EACCES: permission denied, access '/usr/local/lib'
+181 error     at Error (native)
+181 error   errno: -13,
+181 error   code: 'EACCES',
+181 error   syscall: 'access',
+181 error   path: '/usr/local/lib' }
+182 error Please try running this command again as root/Administrator.
+183 verbose exit [ -13, true ]
