@@ -139,7 +139,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
     sensor.SetState();
     delay(1000);
     while (!sensor.PressureCheck()) {
-      pickPill(container);
+      deliverPill(container);
       delay(100);
       
       if (EMPTY) {
@@ -148,8 +148,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
           digitalWrite(pump,LOW);
           return;
         }
-      }
-      
+      }    
      delay (100);
      movePen(-600,downMoveStopper,v);
      digitalWrite(pump,LOW);
@@ -157,7 +156,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
   
        if (shift_register.ShiftChecker(5000,8)) {
         Serial.println ("SUCCESS");
-       break;
+//       break;
        } else {
        Serial.println ("FAIL");
        movePen(600,upMoveStopper,v);
@@ -165,6 +164,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
        }
       
       delay(2000);
+      Serial.println("Moving up");
       movePen(600,upMoveStopper,v);
       delay(2000);
   }
@@ -173,7 +173,21 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
 /*
  *................functions.................. 
  */
-void pickPill (int cont) {
+
+bool is_pill_picked() {
+
+  int dispenser_debug_count = SIZE;
+  for (; dispenser_debug_count > 0; dispenser_debug_count--) {
+      base.drive(-800,1000);
+      movePenDown(-600,v);
+      movePen(600,upMoveStopper,v);
+   if (sensor.PressureCheck()) return true;
+  }
+  
+  return false;
+}
+ 
+void deliverPill (int cont) {
   
   movePen(1024,exitContainer,h);
   
@@ -182,17 +196,13 @@ void pickPill (int cont) {
   
   digitalWrite(pump,HIGH);
   delay(500);
+
   
-  int dispenser_debug_count = SIZE;
-  for (; dispenser_debug_count >  0; dispenser_debug_count--) {
-    
-      base.drive(-600,1000);
-      movePenDown(-600,v);
-//      delay(500);
-      movePen(600,upMoveStopper,v);
-   if (sensor.PressureCheck()) break;
+  if (!is_pill_picked()) {
+    base.drive(1000,2000);
+    if (!is_pill_picked())
+      EMPTY = true;
   }
-  if (dispenser_debug_count == 0) { EMPTY = true;}
  
   movePen(600,upMoveStopper,v);
   movePen(1024,exitContainer,h);
