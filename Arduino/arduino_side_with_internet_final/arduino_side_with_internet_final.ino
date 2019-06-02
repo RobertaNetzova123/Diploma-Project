@@ -46,6 +46,8 @@ const int pin  = A0;
 #define upMoveStopper 7
 #define downMoveStopper 9
 #define SIZE  3
+#define CONTAINERS_COUNT 6
+
 bool EMPTY = false;
 
 const int local_id            = 1;
@@ -105,37 +107,41 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
 //  Serial.print("] ");
 //  Serial.println(".....");
   EMPTY = false;
-
-  String msg;
+  
+  char msg[length];
   for (int i = 0; i < length; i++)
   {
 //    Serial.print((char) payload[i]);
-    msg += (char) payload[i];
+    msg[i] = (char) payload[i];
   }
 
-//  Serial.println();
+  configurePrescription(msg);
+}
 
-  String tmp = msg.substring(5);
-  if(tmp.indexOf(":") <= 0)
-    {
-      mosquitto.publish("error");
-      return;
-    }
+/*
+ *................functions.................. 
+ */
+void configurePrescription(char* msg) {
   
-  int container = (tmp.substring(0, tmp.indexOf(":"))).toInt();
-  int count = (tmp.substring(tmp.indexOf(":") + 1)).toInt();
-  if (count > 0) {
-    Serial.print("Message arrived [");
-    Serial.print(topic);
-    Serial.print("] ");
-    Serial.println(".....");
-    Serial.print("container ");
-    Serial.println(container);
-    Serial.print("count ");
-    Serial.println(count);
+  int pills_count[CONTAINERS_COUNT];
+  char *tmp = strtok(msg, "{,}");
+    for(int i = 0; tmp != NULL && i < CONTAINERS_COUNT; i++)
+    {
+        String current_container = tmp;
+        int count = (current_container.substring(current_container.indexOf(":")+ 1)).toInt();
+        tmp = strtok(NULL, "{,}");
+        pills_count[i] = count;
     }
-    
-  for (int i = 0; i < count; i++) {
+
+    for(int i = 0; i < CONTAINERS_COUNT; i++)
+    { 
+          doPrescription(i+1, pills_count[i]);
+    }
+}
+
+void doPrescription(int container, int repeats) {
+
+   for (int i = 0; i < repeats; i++) {
     sensor.SetState();
     delay(1000);
     while (!sensor.PressureCheck()) {
@@ -156,7 +162,6 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
   
        if (shift_register.ShiftChecker(5000,8)) {
         Serial.println ("SUCCESS");
-//       break;
        } else {
        Serial.println ("FAIL");
        movePen(600,upMoveStopper,v);
@@ -170,10 +175,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
   }
 }
 
-/*
- *................functions.................. 
- */
-
+  
 bool is_pill_picked() {
 
   int dispenser_debug_count = SIZE;
