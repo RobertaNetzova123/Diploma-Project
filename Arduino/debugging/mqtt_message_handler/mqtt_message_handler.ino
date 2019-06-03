@@ -27,27 +27,25 @@
 const int local_id            = 1;
 const String mqtt_id          = "Dispenser:" + String(local_id);
 const int mqtt_port           = 1883;
-const char* mqtt_server       = "rety.dynu.net";
+const char* mqtt_server       = "84.40.122.103";
 
 const String in_topic    = "server-dispenser";
 const String out_topic   = "outTopic";
 
 #define CONTAINERS_COUNT 6
 
-WiFiServer server(81);
+WiFiServer server(80);
 Mosquitto mosquitto = Mosquitto(mqtt_server, mqtt_port, mqtt_id, in_topic, out_topic);
 
 void setup() {
   
   Serial.begin(9600);
  
-
   WiFiManager wifiManager;
   wifiManager.autoConnect("AutoConnectAP");
   Serial.println("Connected.");
 
   Serial.println("Connecting mosquitto broker");
-  mosquitto.mqtt_setup();
   mosquitto.setCallback(mqttCallback);
 }
 

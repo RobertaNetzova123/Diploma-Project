@@ -1,4 +1,5 @@
-//library - https://pubsubclient.knolleary.net/api.html#subscribe
+//used library - https://pubsubclient.knolleary.net/api.html#subscribe
+
 #include "mqtt.h"
 
 Mosquitto::Mosquitto(String server, int port,String id, String in_topic, String out_topic) {
@@ -17,6 +18,7 @@ void Mosquitto::mqtt_setup() {
 
 void Mosquitto::setCallback(void (*callback)(char*, uint8_t*, unsigned int))
 {
+  mqtt_setup();
   _mqtt_client.setCallback(callback);
 }
 
@@ -38,7 +40,7 @@ bool Mosquitto::reconnect() {
   }
   return _mqtt_client.connected();
 }
-bool Mosquitto::  connection_check() {
+bool Mosquitto::connection_check() {
   if (!_mqtt_client.connected()) reconnect();
   if (!_mqtt_client.connected()) return false;
   return true;
@@ -55,7 +57,6 @@ bool Mosquitto::publish(String message)
 
   _mqtt_client.publish(_out_topic.c_str(), message.c_str());
   Serial.println("Publish message: " + message);
-
   return true;
 }
 

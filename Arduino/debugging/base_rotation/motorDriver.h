@@ -3,14 +3,15 @@
 
 #include <Arduino.h>
 
+//used in some functions so you don't have to send a speed
+#define DEFAULTSPEED 255  
+
+
 
 class Motor
 {
   public:
     Motor(int In1pin, int In2pin, int PWMpin);      
-
-  // Drive in direction given by sign, at speed given by magnitude of the 
-	//parameter.
     void drive(int speed);  
 	
 	// drive(), but with a delay(duration)

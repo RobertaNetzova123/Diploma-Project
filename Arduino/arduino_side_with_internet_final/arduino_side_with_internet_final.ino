@@ -1,7 +1,7 @@
 /*
  * Pill Dispencer project Arduino Side
  * Developed by:          Roberta Netzova
- * Last updated on:       19.05.30del
+ * Last updated on:       19.05.30
  * Current version:       01.07
  * Working functionality: Base rotation; VP finding container; 
  *                        VP catching pill - With pressure class; 
@@ -53,14 +53,14 @@ bool EMPTY = false;
 const int local_id            = 1;
 const String mqtt_id          = "Dispenser:" + String(local_id);
 const int mqtt_port           = 1883;
-const char* mqtt_server       = "rety.dynu.net";
+const char* mqtt_server       = "84.40.122.103";
 
 const String in_topic    = "server-dispenser";
 const String out_topic   = "outTopic";
 
 
 
-WiFiServer server(81);
+WiFiServer server(80);
 Mosquitto mosquitto = Mosquitto(mqtt_server, mqtt_port, mqtt_id, in_topic, out_topic);
 
 Motor base = Motor(IN1,IN2, PWMA);
@@ -84,7 +84,6 @@ void setup() {
   Serial.println("Connected.");
 
   Serial.println("Connecting mosquitto broker");
-  mosquitto.mqtt_setup();
   mosquitto.setCallback(mqttCallback);
   
   delay(500);
@@ -180,7 +179,9 @@ bool is_pill_picked() {
 
   int dispenser_debug_count = SIZE;
   for (; dispenser_debug_count > 0; dispenser_debug_count--) {
-      base.drive(-800,1000);
+//      base.drive(-800,1000);
+        base.drive(1000,500);
+        base.drive(-800,1000);
       movePenDown(-600,v);
       movePen(600,upMoveStopper,v);
    if (sensor.PressureCheck()) return true;
