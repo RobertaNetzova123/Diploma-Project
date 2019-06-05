@@ -14,9 +14,13 @@ void setup() {
   pinMode(pump, OUTPUT);
   digitalWrite(pump,LOW);
 
-  base.drive(1000,500);
-  base.drive(-800,1000);
-//  base.drive(-500,500);
+  for (int i = 0; i < 3; i ++) {
+
+      base.drive(800,200);
+    base.drive(-800,200);
+    }
+     base.drive(-600,1000);
+
 
 }
 

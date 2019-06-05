@@ -2,7 +2,7 @@
 
 #include "mqtt.h"
 
-Mosquitto::Mosquitto(String server, int port,String id, String in_topic, String out_topic) {
+Mosquitto::Mosquitto(String server, int port,String id, String in_topic, String out_topic){
 	_server = server;
   _port = port;
   _id = id;
@@ -10,19 +10,17 @@ Mosquitto::Mosquitto(String server, int port,String id, String in_topic, String 
   _out_topic = out_topic;
 }
 
-void Mosquitto::mqtt_setup() {
+void Mosquitto::mqtt_setup(){
    _mqtt_client.setClient(_client); 
 	_mqtt_client.setServer(_server.c_str(), _port);
 }
 
-
-void Mosquitto::setCallback(void (*callback)(char*, uint8_t*, unsigned int))
-{
+void Mosquitto::setCallback(void (*callback)(char*, uint8_t*, unsigned int)){
   mqtt_setup();
   _mqtt_client.setCallback(callback);
 }
 
-bool Mosquitto::reconnect() {
+bool Mosquitto::reconnect(){
   int attempts = 10;
   while (!_mqtt_client.connected()) {
     Serial.print("Attempting MQTT connection...");
@@ -40,23 +38,22 @@ bool Mosquitto::reconnect() {
   }
   return _mqtt_client.connected();
 }
-bool Mosquitto::connection_check() {
+
+bool Mosquitto::connection_check(){
   if (!_mqtt_client.connected()) reconnect();
   if (!_mqtt_client.connected()) return false;
   return true;
   }
-bool Mosquitto::read()
-{
+  
+bool Mosquitto::read(){
     if(! connection_check()) return false;
   return _mqtt_client.loop();
 }
 
-bool Mosquitto::publish(String message)
-{
+bool Mosquitto::publish(String message){
   if (!connection_check()) return false;
 
   _mqtt_client.publish(_out_topic.c_str(), message.c_str());
   Serial.println("Publish message: " + message);
   return true;
 }
-

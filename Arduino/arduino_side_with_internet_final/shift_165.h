@@ -11,6 +11,7 @@ class Shift_165 {
   // shifts for specific duration and checks if specific pin has gone LOW. 
   //After the duration has ended exits the function with false result.
     bool ShiftChecker (int duration, int checker);
+    bool timeCheck (unsigned long start, unsigned long current,int duration);
    int get_register_size();
    void ShiftPrint(int* shifted);
 	private:

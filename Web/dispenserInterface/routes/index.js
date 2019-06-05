@@ -6,7 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/on_off', function(req, res) {  
+router.get('/make_prescription', function(req, res) {  
 	console.log (req.query);
 	console.log(req.query.cont1);
     const { execSync } = require('child_process');

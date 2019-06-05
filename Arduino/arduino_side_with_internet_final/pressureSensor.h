@@ -2,7 +2,6 @@
 #define pressureSensor_h
 
 #include <Arduino.h>
-// #include "motorDriver.h"
 
 class Sensor {
 

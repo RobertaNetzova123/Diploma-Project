@@ -8,7 +8,7 @@ block content
   each error, i in errors
    div.alert.alert-danger #{error.msg}
 
- form(method='get', action='/on_off')
+ form(method='get', action='/make_prescription')
   .form-group
    label Container 1
    select.form-control(name = 'cont1')

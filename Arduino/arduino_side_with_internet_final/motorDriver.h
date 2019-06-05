@@ -4,8 +4,7 @@
 #include <Arduino.h>
 
 
-class Motor
-{
+class Motor {
   public:
     Motor(int In1pin, int In2pin, int PWMpin);      
 
