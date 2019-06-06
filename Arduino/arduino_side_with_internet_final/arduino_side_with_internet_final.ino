@@ -50,9 +50,6 @@
 
 bool EMPTY = false;
 
-unsigned long startM;
-unsigned long currentM;
-
 const int local_id            = 1;
 const String mqtt_id          = "Dispenser:" + String(local_id);
 const int mqtt_port           = 1883;
@@ -80,6 +77,10 @@ void setup() {
   digitalWrite(pump,LOW);
 
   WiFiManager wifiManager;
+
+// Uncomment and run it once, if you want to erase all the stored information
+//  wifiManager.resetSettings();
+//  Serial.println("resetSettings");
   wifiManager.autoConnect("AutoConnectAP");
   Serial.println("Connected.");
 
@@ -99,10 +100,7 @@ void loop(){
 
 
 void mqttCallback(char* topic, byte* payload, unsigned int length){
-//  Serial.print("Message arrived [");
-//  Serial.print(topic);
-//  Serial.print("] ");
-//  Serial.println(".....");
+
   EMPTY = false;
   
   char msg[length];
@@ -156,6 +154,7 @@ void doPrescription(int container, int repeats) {
        Serial.println ("SUCCESS");
        } else {
         Serial.println ("FAIL");
+        delay(1000);
         movePen(600,upMoveStopper,v);
         return;
         }
@@ -172,9 +171,10 @@ bool is_pill_picked() {
 
   int dispenser_debug_count = SIZE;
   for (; dispenser_debug_count > 0; dispenser_debug_count--) {
-//  base.drive(-800,1000);
-    base.drive(1000,500);
-    base.drive(-800,1000);
+//    base.drive(-800,1000);
+    base.drive(700,500);
+    delay(100);
+    base.drive(-700,1000);
         
     movePenDown(-600,v);
     movePen(600,upMoveStopper,v);
@@ -192,7 +192,7 @@ void deliverPill (int cont) {
   delay(500);
 
   if (!is_pill_picked()) {
-    base.drive(1000,2000);
+    base.drive(1000,1000);
     if (!is_pill_picked())
       EMPTY = true;
     }

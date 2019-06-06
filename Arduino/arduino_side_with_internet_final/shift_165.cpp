@@ -66,48 +66,22 @@ void Shift_165::ShiftPrint(int* shifted) {
       Serial.println();
   }
 
-//bool Shift_165::ShiftChecker (int duration, int checker) {
-//  
-//    startMillis = millis();
-//    currentMillis = millis();
-//    while (currentMillis - startMillis < duration) {
-//    int shifted[number_of_bits];
-//    Shift_bytes(shifted);
-//    Serial.print(shifted[checker]);
-//    
-//      if (shifted[checker] == 0) {
-//        Serial.println();
-//        return true;
-//      }
-//      currentMillis = millis();
-//      }
-//    Serial.println();
-//    return false;
-//  }
-
-
-bool Shift_165::ShiftChecker (int duration, int neededContainer) {
+bool Shift_165::ShiftChecker (int duration, int checker) {
   
     startMillis = millis();
     currentMillis = millis();
-    while (!timeCheck(startMillis,currentMillis,duration)) {
+    while (currentMillis - startMillis < duration) {
     int shifted[number_of_bits];
     Shift_bytes(shifted);
-    Serial.print(shifted[neededContainer]);
+    Serial.print(shifted[checker]);
     
-      if (shifted[neededContainer] == 0) {
+      if (shifted[checker] == 0) {
         Serial.println();
         return true;
       }
+      currentMillis = millis();
       }
     Serial.println();
     return false;
   }
 
-bool Shift_165::timeCheck (unsigned long start, unsigned long current,int duration) {  
-  if (current - start < duration) {
-   current = millis();
-   return false;
-   }
-   return true;
-  }
